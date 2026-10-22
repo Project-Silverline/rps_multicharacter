@@ -17,5 +17,9 @@ Config.DefaultModel = {
     f = 'mp_f_freemode_01',
 }
 
+-- ms to wait after joining before showing the menu. ox_lib's interface may still be
+-- loading at that point, and a menu sent before it's ready never appears.
+Config.JoinDelay = 2500
+
 -- Idle animation for the preview ped; nil to stand still
 Config.IdleScenario = 'WORLD_HUMAN_STAND_IMPATIENT'

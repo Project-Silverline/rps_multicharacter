@@ -4,6 +4,7 @@ local previewPed
 local previewToken = 0 -- bumped on every preview so slow loads can't show a stale character
 local entries = {}     -- menu index -> { char = row } or { create = true }
 local dobRange
+local firstOpen = true -- the first open after joining waits for ox_lib's interface
 
 ---------------------------------------------------------------------------
 -- Helpers
@@ -252,6 +253,13 @@ local function open()
     end
 
     startScene()
+
+    if firstOpen then
+        firstOpen = false
+        while GetIsLoadingScreenActive() do Wait(100) end
+        Wait(Config.JoinDelay)
+    end
+
     refresh()
     DoScreenFadeIn(500)
 end
